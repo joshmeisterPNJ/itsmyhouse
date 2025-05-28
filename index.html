@@ -49,11 +49,18 @@
   </main>
 
   <!-- ====== BOTTOM INSTAGRAM ICON ====== -->
-  <footer>
-    <a href="https://www.instagram.com/itsmyafrohouse/?hl=en" target="_blank" aria-label="Follow on Instagram">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-    </a>
-  </footer>
+ <footer>
+  <a href="https://www.instagram.com/itsmyafrohouse/?hl=en"
+     target="_blank" aria-label="Follow on Instagram">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+      alt="Instagram"
+      width="32" height="32"          <!-- ← these two lines hard-cap the size -->
+      style="width:32px;height:32px;filter:invert(100%);"  <!-- and this is a final override -->
+    >
+  </a>
+</footer>
+
 
   <!-- ====== SOUND­CLOUD PLAYER JS (builds a 100 % valid URL) ====== -->
   <script>
