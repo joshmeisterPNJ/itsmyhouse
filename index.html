@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<title>It’s My House • Radio</title>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#000;color:#fff;font-family:sans-serif">
+  <iframe id="sc"
+    style="border:0;width:100%;max-width:600px;height:166px"
+    allow="autoplay"
+  ></iframe>
+
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script>
+    // ONE mix to start. Replace with your own track URL:
+    const MIX = 'https://soundcloud.com/tanaka-569226889/afro-tech?si=b9643ccea68f45be873fe717b7566acc&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
+    const frame = document.getElementById('sc');
+    frame.src =
+      'https://w.soundcloud.com/player/?url=' +
+      encodeURIComponent(MIX) +
+      '&auto_play=true&show_artwork=false&show_user=false';
+  </script>
+</body>
+</html>
