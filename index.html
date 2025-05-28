@@ -1,22 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="utf-8" />
-<title>It’s My House • Radio</title>
-<body style="display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#000;color:#fff;font-family:sans-serif">
-  <iframe id="sc"
-    style="border:0;width:100%;max-width:600px;height:166px"
-    allow="autoplay"
-  ></iframe>
+<head>
+  <meta charset="utf-8" />
+  <title>It’s My Afro House • Radio</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    .player {
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .sc-info {
+      font-size: 10px;
+      color: #cccccc;
+      line-break: anywhere;
+      word-break: normal;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: Interstate, Lucida Grande, Lucida Sans Unicode,
+                   Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+      font-weight: 100;
+      margin-bottom: 30px;
+    }
+    .instagram {
+      margin-top: auto;
+    }
+    .instagram img {
+      width: 32px;
+      height: 32px;
+      filter: invert(100%);
+    }
+    .instagram a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
 
-  <script src="https://w.soundcloud.com/player/api.js"></script>
-  <script>
-    // ONE mix to start. Replace with your own track URL:
-    const MIX = 'https://soundcloud.com/tanaka-569226889/afro-tech?si=b9643ccea68f45be873fe717b7566acc&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
-    const frame = document.getElementById('sc');
-    frame.src =
-      'https://w.soundcloud.com/player/?url=' +
-      encodeURIComponent(MIX) +
-      '&auto_play=true&show_artwork=false&show_user=false';
-  </script>
+  <h1>ITS MY AFRO HOUSE</h1>
+
+  <!-- SoundCloud Visual Embed -->
+  <div class="player">
+    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1763173161
+           &color=%23ff5500&auto_play=false&hide_related=true&show_comments=false
+           &show_user=true&show_reposts=false&show_teaser=true&visual=true">
+    </iframe>
+  </div>
+  <div class="sc-info">
+    <a href="https://soundcloud.com/tanaka-569226889" title="usadaro Tanaka" target="_blank">
+      usadaro Tanaka
+    </a> ·
+    <a href="https://soundcloud.com/tanaka-569226889/afrohousemix" title="AfrohouseMix" target="_blank">
+      AfrohouseMix
+    </a>
+  </div>
+
+  <!-- Instagram Link -->
+  <div class="instagram">
+    <a href="https://www.instagram.com/itsmyafrohouse/?hl=en" target="_blank" aria-label="Follow on Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+  </div>
+
 </body>
 </html>
