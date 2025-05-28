@@ -4,11 +4,10 @@
   <meta charset="utf-8" />
   <title>It’s My Afro House • Radio</title>
   <style>
+    /* make the whole page a column flex layout */
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
       margin: 0;
       background: #000;
@@ -16,69 +15,88 @@
       font-family: sans-serif;
       text-align: center;
     }
-    h1 {
-      margin-bottom: 20px;
+
+    /* header sticks at the very top */
+    header {
+      padding: 20px 0;
       font-size: 2rem;
       letter-spacing: 2px;
+      flex: 0 0 auto;
     }
+
+    /* main grows to fill remaining space and centers its content */
+    main {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* your player container */
     .player {
       max-width: 600px;
       width: 100%;
-      margin-bottom: 20px;
     }
+
+    /* track info just below the player */
     .sc-info {
       font-size: 10px;
-      color: #cccccc;
+      color: #ccc;
+      margin-top: 8px;
       line-break: anywhere;
-      word-break: normal;
-      overflow: hidden;
       white-space: nowrap;
+      overflow: hidden;
       text-overflow: ellipsis;
-      font-family: Interstate, Lucida Grande, Lucida Sans Unicode,
-                   Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
       font-weight: 100;
-      margin-bottom: 30px;
     }
-    .instagram {
-      margin-top: auto;
+
+    /* footer sticks at the bottom */
+    footer {
+      flex: 0 0 auto;
+      padding: 20px 0;
     }
+
+    /* Instagram icon styling */
     .instagram img {
       width: 32px;
-      height: 32px;
       filter: invert(100%);
-    }
-    .instagram a {
-      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
-  <h1>ITS MY AFRO HOUSE</h1>
+  <header>ITS MY AFRO HOUSE</header>
 
-  <!-- SoundCloud Visual Embed -->
-  <div class="player">
-    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1763173161
-           &color=%23ff5500&auto_play=false&hide_related=true&show_comments=false
-           &show_user=true&show_reposts=false&show_teaser=true&visual=true">
-    </iframe>
-  </div>
-  <div class="sc-info">
-    <a href="https://soundcloud.com/tanaka-569226889" title="usadaro Tanaka" target="_blank">
-      usadaro Tanaka
-    </a> ·
-    <a href="https://soundcloud.com/tanaka-569226889/afrohousemix" title="AfrohouseMix" target="_blank">
-      AfrohouseMix
-    </a>
-  </div>
+  <main>
+    <div>
+      <!-- Visual SoundCloud embed -->
+      <div class="player">
+        <iframe
+          width="100%"
+          height="300"
+          scrolling="no"
+          frameborder="no"
+          allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftanaka-569226889%2Fafrohousemix&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+        </iframe>
+      </div>
+      <!-- Track info -->
+      <div class="sc-info">
+        <a href="https://soundcloud.com/tanaka-569226889" target="_blank" style="color:#ccc;text-decoration:none">
+          usadaro Tanaka
+        </a> ·
+        <a href="https://soundcloud.com/tanaka-569226889/afrohousemix" target="_blank" style="color:#ccc;text-decoration:none">
+          AfrohouseMix
+        </a>
+      </div>
+    </div>
+  </main>
 
-  <!-- Instagram Link -->
-  <div class="instagram">
+  <footer>
     <a href="https://www.instagram.com/itsmyafrohouse/?hl=en" target="_blank" aria-label="Follow on Instagram">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
     </a>
-  </div>
+  </footer>
 
 </body>
 </html>
