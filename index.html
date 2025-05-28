@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <title>It’s My Afro House • Radio</title>
 
-  <!-- ====== BASIC STYLES (same look as before) ====== -->
   <style>
     /* full-height column flex layout */
     body{
@@ -12,65 +11,54 @@
       background:#000;color:#fff;font-family:sans-serif;text-align:center;
     }
     header{padding:20px 0;font-size:2rem;letter-spacing:2px;flex:0 0 auto;}
-    main{flex:1 1 auto;display:flex;justify-content:center;align-items:center;}
+    main  {flex:1 1 auto;display:flex;justify-content:center;align-items:center;}
     .player{max-width:600px;width:100%;}
     .sc-info{
       font-size:10px;color:#ccc;margin-top:8px;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-      font-weight:100;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:100;
     }
     footer{padding:20px 0;flex:0 0 auto;}
-    footer img{width:32px;height:32px;filter:invert(100%);}
+    footer img{width:32px;height:32px;filter:invert(100%);}  /* <-- keeps icon tiny */
   </style>
 </head>
 <body>
 
-  <!-- ====== TOP TITLE ====== -->
   <header>ITS MY AFRO HOUSE</header>
 
-  <!-- ====== CENTERED PLAYER ====== -->
   <main>
     <div>
       <div class="player">
-        <!-- blank iframe – src is set by JS so no accidental spaces -->
-        <iframe id="sc" width="100%" height="300" frameborder="no" scrolling="no" allow="autoplay"></iframe>
+        <!-- SoundCloud visual player, URL built in JS (no hidden spaces) -->
+        <iframe id="sc" width="100%" height="300"
+                frameborder="no" scrolling="no" allow="autoplay"></iframe>
       </div>
 
-      <!-- small credit line -->
       <div class="sc-info">
-        <a href="https://soundcloud.com/tanaka-569226889" target="_blank" style="color:#ccc;text-decoration:none">
-          usadaro Tanaka
-        </a> &middot;
-        <a href="https://soundcloud.com/tanaka-569226889/afrohousemix" target="_blank" style="color:#ccc;text-decoration:none">
-          AfrohouseMix
-        </a>
+        <a href="https://soundcloud.com/tanaka-569226889" target="_blank"
+           style="color:#ccc;text-decoration:none">usadaro Tanaka</a> ·
+        <a href="https://soundcloud.com/tanaka-569226889/afrohousemix" target="_blank"
+           style="color:#ccc;text-decoration:none">AfrohouseMix</a>
       </div>
     </div>
   </main>
 
-  <!-- ====== BOTTOM INSTAGRAM ICON ====== -->
- <footer>
-  <a href="https://www.instagram.com/itsmyafrohouse/?hl=en"
-     target="_blank" aria-label="Follow on Instagram">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-      alt="Instagram"
-      width="32" height="32"          <!-- ← these two lines hard-cap the size -->
-    >
-  </a>
-</footer>
+  <footer>
+    <a href="https://www.instagram.com/itsmyafrohouse/?hl=en"
+       target="_blank" aria-label="Follow on Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+           alt="Instagram">
+    </a>
+  </footer>
 
-
-  <!-- ====== SOUND­CLOUD PLAYER JS (builds a 100 % valid URL) ====== -->
   <script>
-    const MIX = 'https://soundcloud.com/tanaka-569226889/afrohousemix';   // public track URL
-    const params = '&color=%23ff5500' +
-                   '&auto_play=false&hide_related=true' +
-                   '&show_comments=false&show_user=true' +
-                   '&show_reposts=false&show_teaser=true&visual=true';
-
+    /* build 100 % correct embed URL */
+    const mix   = 'https://soundcloud.com/tanaka-569226889/afrohousemix';
+    const opts  = '&color=%23ff5500&auto_play=false&hide_related=true'
+                + '&show_comments=false&show_user=true&show_reposts=false'
+                + '&show_teaser=true&visual=true';
     document.getElementById('sc').src =
-      'https://w.soundcloud.com/player/?url=' + encodeURIComponent(MIX) + params;
+      'https://w.soundcloud.com/player/?url=' + encodeURIComponent(mix) + opts;
   </script>
+
 </body>
 </html>
