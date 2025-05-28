@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>It’s My Afro House • Radio</title>
+<title>It's My Afro House • Radio</title>
 
 <!-- Kablammo font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,13 +23,34 @@
     font-size:2.4rem;letter-spacing:2px;
     padding:14px 0;flex:0 0 auto;
   }
-  main{flex:1 1 auto;display:flex;justify-content:center;align-items:center;}
-  .player{max-width:900px;width:100%;}        /* 3 × 300 = 900 */
-  .sc-info{
-    font-size:10px;color:#ccc;margin-top:8px;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:100;
+  main{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .play-btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
   }
-  footer{padding:14px 0;flex:0 0 auto;}
+  .play-btn:active {
+    background: #222;
+    border-radius: 50%;
+  }
+  .artist-card {
+    background: #181818;
+    border-radius: 12px;
+    padding: 16px 28px;
+    box-shadow: 0 2px 8px #0008;
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+  }
+  footer{padding:14px 0;flex:0 0 auto;display:flex;justify-content:center;}
   footer img{width:32px;height:32px;filter:grayscale(100%) contrast(0) brightness(2);}
   /* trim a little on very short screens */
   @media (max-height:740px){
@@ -42,43 +63,85 @@
 <header>ITS&nbsp;MY&nbsp;AFRO&nbsp;HOUSE</header>
 
 <main>
-  <div>
-    <div class="player">
-      <!-- Original SoundCloud visual embed -->
-      <iframe id="sc" width="100%" height="300" scrolling="no" frameborder="no"
-        allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1763173161&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-      </iframe>
-    </div>
-
-    <div class="sc-info">
-      <a href="https://soundcloud.com/tanaka-569226889" target="_blank" style="color:#ccc;text-decoration:none">
-        usadaro Tanaka</a> ·
-      <a href="https://soundcloud.com/tanaka-569226889/afrohousemix" target="_blank" style="color:#ccc;text-decoration:none">
-        AfrohouseMix</a>
-    </div>
+  <button class="play-btn" id="playPauseBtn" aria-label="Play">
+    <!-- Play icon SVG (triangle) -->
+    <svg id="playIcon" width="64" height="64" viewBox="0 0 64 64" fill="white">
+      <circle cx="32" cy="32" r="32" fill="black"/>
+      <polygon points="26,18 26,46 48,32" fill="white"/>
+    </svg>
+    <!-- Pause icon SVG (hidden by default) -->
+    <svg id="pauseIcon" width="64" height="64" viewBox="0 0 64 64" fill="white" style="display:none;">
+      <circle cx="32" cy="32" r="32" fill="black"/>
+      <rect x="22" y="18" width="8" height="28" fill="white"/>
+      <rect x="34" y="18" width="8" height="28" fill="white"/>
+    </svg>
+  </button>
+  <div class="artist-card">
+    <div><strong>usadaro Tanaka</strong></div>
+    <div>AfrohouseMix</div>
   </div>
+  <!-- Hidden SoundCloud widget -->
+  <iframe
+    id="sc-widget"
+    style="display:none"
+    width="0"
+    height="0"
+    scrolling="no"
+    frameborder="no"
+    allow="autoplay"
+    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/tanaka-569226889/afrohousemix&auto_play=false">
+  </iframe>
 </main>
 
 <footer>
   <a href="https://www.instagram.com/itsmyafrohouse/?hl=en" target="_blank" aria-label="Follow on Instagram">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+    <div style="background: black; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center;">
+      <svg width="100" height="100" viewBox="0 0 448 448" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="448" height="448" rx="100" fill="black"/>
+        <rect x="96" y="96" width="256" height="256" rx="80" fill="black" stroke="white" stroke-width="24"/>
+        <circle cx="224" cy="224" r="64" fill="black" stroke="white" stroke-width="24"/>
+        <circle cx="320" cy="128" r="16" fill="white"/>
+      </svg>
+    </div>
   </a>
 </footer>
 
+<script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
-/* keep height = 300 px (≈ 3 × 1) on wide screens */
-const sc   = document.getElementById('sc');
-const FIX_HEIGHT = 300;
+  const widget = SC.Widget(document.getElementById('sc-widget'));
+  const playBtn = document.getElementById('playPauseBtn');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  let isPlaying = false;
 
-/* run shortly after SoundCloud’s own script, then again on resize */
-function forceRatio(){
-  if (sc.offsetWidth >= 700) {               // only big screens go square
-    sc.style.height = FIX_HEIGHT + 'px';     // pull it back to 300px
-  }
-}
-sc.onload = () => setTimeout(forceRatio, 50); // slight delay beats their code
-window.addEventListener('resize', forceRatio);
+  playBtn.onclick = function() {
+    if (!isPlaying) {
+      widget.play();
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = '';
+      playBtn.setAttribute('aria-label', 'Pause');
+    } else {
+      widget.pause();
+      playIcon.style.display = '';
+      pauseIcon.style.display = 'none';
+      playBtn.setAttribute('aria-label', 'Play');
+    }
+    isPlaying = !isPlaying;
+  };
+
+  // Keep button in sync if user pauses from elsewhere
+  widget.bind(SC.Widget.Events.PAUSE, function() {
+    playIcon.style.display = '';
+    pauseIcon.style.display = 'none';
+    playBtn.setAttribute('aria-label', 'Play');
+    isPlaying = false;
+  });
+  widget.bind(SC.Widget.Events.PLAY, function() {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = '';
+    playBtn.setAttribute('aria-label', 'Pause');
+    isPlaying = true;
+  });
 </script>
 
 </body>
